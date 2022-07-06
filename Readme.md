@@ -22,6 +22,7 @@ qb-input - https://github.com/qbcore-framework/qb-input
 ## Credits : 
 
 - qbcore team for their amazing scripts.
+-MT scripts for a snippet of code that let me spawn props. 
 
 
 ## Insert into @qb-core/shared/items.lua 
