@@ -1,14 +1,18 @@
 Config = {}
 ---Box and Case Can have completely different items within them. they do not inteferre with each other at all.
 
-Config.NumberOfItemsBox = 1  --amount of different items to receive from 1 (box) 
-Config.NumberOfItemsCase = 1  --amount of different items to receive from 1 (Case) 
-Config.ItemAmountBox = 1  --quantity of each item received (1 coffee or 2 coffee etc) (Box)
-Config.ItemAmountCase = 1  --quantity of each item received (1 coffee or 2 coffee etc) (Case)
+Config.NumberOfItemsBox = 2  --amount of different items to receive from 1 (box) 
+Config.NumberOfItemsCase = 2  --amount of different items to receive from 1 (Case) 
+Config.NumberOfItemsBag = 2
+Config.ItemAmountBox = 5  --quantity of each item received (1 coffee or 2 coffee etc) (Box)
+Config.ItemAmountCase = 5  --quantity of each item received (1 coffee or 2 coffee etc) (Case)
+Config.ItemAmountBag = 5
 Config.LuckItemBox = "trojan_usb"  --change to whatever you want (Box)
 Config.LuckItemCase = "bandage"  --change to whatever you want (Case)
+Config.LuckItemBag = "lockpick"
 Config.LuckAmountBox = 1 --amount of luck item you receive if enabled (Box)
 Config.LuckAmountCase = 1 --amount of luck item you receive if enabled (Case)
+Config.LuckAmountBag = 1
 
 Config.BoxItemList = {}  --dont touch
 
@@ -41,6 +45,20 @@ Config.CaseItems = {   --place whatever items you want in here. theres no limit
     "rolex",
     "goldchain",
     "plastic",
+    "weed_white-widow",
+    "joint",
+}
+
+Config.BagItemList = {}
+
+Config.BagItems = {   --place whatever items you want in here. theres no limit
+    "pistol_ammo",
+    "rifle_ammo",
+    "smg_ammo",
+    "shotgun_ammo",
+    "security_card_01",
+    "water_bottle",
+    "cokebaggy",
     "weed_white-widow",
     "joint",
 }
