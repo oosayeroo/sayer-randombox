@@ -29,10 +29,12 @@ qb-input - https://github.com/qbcore-framework/qb-input
 
 ```
 QBShared.Items = {
--- Randombox
-['randombox']                	 = {['name'] = 'randombox', 	            	['label'] = "Random Box", 	       	['weight'] = 300, 		['type'] = 'item', 		['image'] = 'randombox.png', 	         	['unique'] = true, 	    ['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'A Random Box'},
-    ['randomcase']              	 = {['name'] = 'randomcase', 	             	['label'] = "Random Case", 	       	['weight'] = 300, 		['type'] = 'item', 		['image'] = 'randomcase.png', 	         	['unique'] = true, 	    ['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'A Random Case'},
+--qb-randombox
 	
+    ['randombox']                	 = {['name'] = 'randombox', 	            	['label'] = "Random Box", 	       	['weight'] = 300, 		['type'] = 'item', 		['image'] = 'randombox.png', 	         	['unique'] = true, 	    ['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'A Random Box'},
+    ['randomcase']              	 = {['name'] = 'randomcase', 	             	['label'] = "Random Case", 	       	['weight'] = 300, 		['type'] = 'item', 		['image'] = 'randomcase.png', 	         	['unique'] = true, 	    ['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'A Random Case'},
+	['randombag']                	 = {['name'] = 'randombag', 	            	['label'] = "Random Bag", 	       	['weight'] = 300, 		['type'] = 'item', 		['image'] = 'randombag.png', 	         	['unique'] = true, 	    ['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'A Random Trash Bag'},
+    	
 }
 
 ```
