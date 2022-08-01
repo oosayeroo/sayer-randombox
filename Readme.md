@@ -34,7 +34,10 @@ QBShared.Items = {
     ['randombox']                	 = {['name'] = 'randombox', 	            	['label'] = "Random Box", 	       	['weight'] = 300, 		['type'] = 'item', 		['image'] = 'randombox.png', 	         	['unique'] = true, 	    ['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'A Random Box'},
     ['randomcase']              	 = {['name'] = 'randomcase', 	             	['label'] = "Random Case", 	       	['weight'] = 300, 		['type'] = 'item', 		['image'] = 'randomcase.png', 	         	['unique'] = true, 	    ['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'A Random Case'},
 	['randombag']                	 = {['name'] = 'randombag', 	            	['label'] = "Random Bag", 	       	['weight'] = 300, 		['type'] = 'item', 		['image'] = 'randombag.png', 	         	['unique'] = true, 	    ['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'A Random Trash Bag'},
-    	
+    ['randomammo']                	 = {['name'] = 'randomammo', 	            	['label'] = "Old Ammo Case", 	   	['weight'] = 300, 		['type'] = 'item', 		['image'] = 'randomammo.png', 	         	['unique'] = true, 	    ['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'An Old Ammo Case'},
+    ['randommedkit']               	 = {['name'] = 'randommedkit', 	            	['label'] = "Old Medkit", 	       	['weight'] = 300, 		['type'] = 'item', 		['image'] = 'randommedkit.png', 	       	['unique'] = true, 	    ['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'An Old Medkit'},
+    ['randomgun']                	 = {['name'] = 'randomgun', 	            	['label'] = "Gun Case", 	       	['weight'] = 300, 		['type'] = 'item', 		['image'] = 'randomgun.png', 	         	['unique'] = true, 	    ['useable'] = true, 	['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'An Old Gun Case'},
+       	
 }
 
 ```
