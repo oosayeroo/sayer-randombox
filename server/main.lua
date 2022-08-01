@@ -57,6 +57,41 @@ RegisterNetEvent('qb-randombox:server:GetRewardBag', function()
         end
     end)
 
+RegisterNetEvent('qb-randombox:server:GetRewardAmmo', function()
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+        for i = 1, Config.NumberOfItemsAmmo, 1 do
+            local item = Config.AmmoItems[math.random(1, #Config.AmmoItems)]
+            Player.Functions.AddItem(item, Config.ItemAmountAmmo)
+            TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[item], 'add')
+            Wait(500)
+        end
+    end)
+
+    RegisterNetEvent('qb-randombox:server:GetRewardMedkit', function()
+        local src = source
+        local Player = QBCore.Functions.GetPlayer(src)
+            for i = 1, Config.NumberOfItemsMedkit, 1 do
+                local item = Config.MedkitItems[math.random(1, #Config.MedkitItems)]
+                Player.Functions.AddItem(item, Config.ItemAmountMedkit)
+                TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[item], 'add')
+                Wait(500)
+            end
+        end)
+
+        RegisterNetEvent('qb-randombox:server:GetRewardGunCase', function()
+            local src = source
+            local Player = QBCore.Functions.GetPlayer(src)
+                for i = 1, Config.NumberOfItemsGun, 1 do
+                    local item = Config.GunItems[math.random(1, #Config.GunItems)]
+                    Player.Functions.AddItem(item, Config.ItemAmountGun)
+                    TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[item], 'add')
+                    Wait(500)
+                end
+            end)
+
+
+
 QBCore.Functions.CreateUseableItem("randombox", function(source, item)
     local Player = QBCore.Functions.GetPlayer(source)
     TriggerClientEvent("qb-randombox:BoxOpening", source, item.name)
@@ -70,4 +105,19 @@ end)
 QBCore.Functions.CreateUseableItem("randomcase", function(source, item)
     local Player = QBCore.Functions.GetPlayer(source)
     TriggerClientEvent("qb-randombox:CaseOpening", source, item.name)
+end)
+
+QBCore.Functions.CreateUseableItem("randomammo", function(source, item)
+    local Player = QBCore.Functions.GetPlayer(source)
+    TriggerClientEvent("qb-randombox:AmmoOpening", source, item.name)
+end)
+
+QBCore.Functions.CreateUseableItem("randommedkit", function(source, item)
+    local Player = QBCore.Functions.GetPlayer(source)
+    TriggerClientEvent("qb-randombox:MedkitOpening", source, item.name)
+end)
+
+QBCore.Functions.CreateUseableItem("randomgun", function(source, item)
+    local Player = QBCore.Functions.GetPlayer(source)
+    TriggerClientEvent("qb-randombox:GunCaseOpening", source, item.name)
 end)
