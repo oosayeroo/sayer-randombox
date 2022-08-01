@@ -102,6 +102,108 @@ AddEventHandler("qb-randombox:BagOpening", function()
     end)
 end)
 
+RegisterNetEvent("qb-randombox:AmmoOpening")
+AddEventHandler("qb-randombox:AmmoOpening", function()
+    local playerPed = PlayerPedId()
+    local coords    = GetEntityCoords(playerPed)
+    local forward   = GetEntityForwardVector(playerPed)
+    local x, y, z   = table.unpack(coords + forward * 1.0)
+
+    local ammo = `prop_box_ammo01a`
+    RequestModel(ammo)
+    while (not HasModelLoaded(ammo)) do
+        Wait(1)
+    end
+    local ammo1 = CreateObject(ammo, x, y, z, true, false, true)
+    PlaceObjectOnGroundProperly(ammo1)
+    SetEntityAsMissionEntity(ammo1)
+
+    TriggerEvent('animations:client:EmoteCommandStart', {"mechanic3"})
+    QBCore.Functions.Progressbar('name_here', 'Opening Ammo Case...', 5000, false, true, {
+        disableMovement = true,
+        disableCarMovement = true,
+        disableMouse = false,
+        disableCombat = true,
+    }, {}, {}, {}, function()
+        TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+
+        DeleteEntity(ammo1)
+
+        TriggerServerEvent('QBCore:Server:RemoveItem', 'randomammo', 1)
+        TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items['randomammo'], "remove")
+
+        TriggerServerEvent('qb-randombox:server:GetRewardAmmo')
+    end)
+end)
+
+RegisterNetEvent("qb-randombox:MedkitOpening")
+AddEventHandler("qb-randombox:MedkitOpening", function()
+    local playerPed = PlayerPedId()
+    local coords    = GetEntityCoords(playerPed)
+    local forward   = GetEntityForwardVector(playerPed)
+    local x, y, z   = table.unpack(coords + forward * 1.0)
+
+    local medkit = `xm_prop_smug_crate_s_medical`
+    RequestModel(medkit)
+    while (not HasModelLoaded(medkit)) do
+        Wait(1)
+    end
+    local med1 = CreateObject(medkit, x, y, z, true, false, true)
+    PlaceObjectOnGroundProperly(med1)
+    SetEntityAsMissionEntity(med1)
+
+    TriggerEvent('animations:client:EmoteCommandStart', {"mechanic3"})
+    QBCore.Functions.Progressbar('name_here', 'Opening Medical Kit...', 5000, false, true, {
+        disableMovement = true,
+        disableCarMovement = true,
+        disableMouse = false,
+        disableCombat = true,
+    }, {}, {}, {}, function()
+        TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+
+        DeleteEntity(med1)
+
+        TriggerServerEvent('QBCore:Server:RemoveItem', 'randommedkit', 1)
+        TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items['randommedkit'], "remove")
+
+        TriggerServerEvent('qb-randombox:server:GetRewardMedkit')
+    end)
+end)
+
+RegisterNetEvent("qb-randombox:GunCaseOpening")
+AddEventHandler("qb-randombox:GunCaseOpening", function()
+    local playerPed = PlayerPedId()
+    local coords    = GetEntityCoords(playerPed)
+    local forward   = GetEntityForwardVector(playerPed)
+    local x, y, z   = table.unpack(coords + forward * 1.0)
+
+    local guncase = `prop_box_guncase_03a`
+    RequestModel(guncase)
+    while (not HasModelLoaded(guncase)) do
+        Wait(1)
+    end
+    local gun1 = CreateObject(guncase, x, y, z, true, false, true)
+    PlaceObjectOnGroundProperly(gun1)
+    SetEntityAsMissionEntity(gun1)
+
+    TriggerEvent('animations:client:EmoteCommandStart', {"mechanic3"})
+    QBCore.Functions.Progressbar('name_here', 'Opening Gun Case...', 5000, false, true, {
+        disableMovement = true,
+        disableCarMovement = true,
+        disableMouse = false,
+        disableCombat = true,
+    }, {}, {}, {}, function()
+        TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+
+        DeleteEntity(gun1)
+
+        TriggerServerEvent('QBCore:Server:RemoveItem', 'randomgun', 1)
+        TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items['randomgun'], "remove")
+
+        TriggerServerEvent('qb-randombox:server:GetRewardGunCase')
+    end)
+end)
+
 RegisterNetEvent('qb-randombox:client:SetBagItems', function(BagItemList)
 	Config.BagItemList = BagItemList
 end)
@@ -112,6 +214,18 @@ end)
 
 RegisterNetEvent('qb-randombox:client:SetCaseItems', function(CaseItemList)
 	Config.CaseItemList = CaseItemList
+end)
+
+RegisterNetEvent('qb-randombox:client:SetAmmoItems', function(AmmoItemList)
+	Config.AmmoItemList = AmmoItemList
+end)
+
+RegisterNetEvent('qb-randombox:client:SetMedkitItems', function(MedkitItemList)
+	Config.MedkitItemList = MedkitItemList
+end)
+
+RegisterNetEvent('qb-randombox:client:SetAmmoItems', function(GunItemList)
+	Config.GunItemList = GunItemList
 end)
 
 function loadAnimDict(dict)
