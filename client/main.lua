@@ -27,7 +27,7 @@ AddEventHandler("qb-randombox:BoxOpening", function()
 
         DeleteEntity(obj1)
 
-        TriggerServerEvent('QBCore:Server:RemoveItem', 'randombox', 1)
+        TriggerServerEvent("qb-randombox:removeItem", "randombox")
         TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items['randombox'], "remove")
 
         TriggerServerEvent('qb-randombox:server:GetRewardBox')
@@ -61,7 +61,7 @@ AddEventHandler("qb-randombox:CaseOpening", function()
 
         DeleteEntity(obj2)
 
-        TriggerServerEvent('QBCore:Server:RemoveItem', 'randomcase', 1)
+        TriggerServerEvent("qb-randombox:removeItem", "randomcase")
         TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items['randomcase'], "remove")
 
         TriggerServerEvent('qb-randombox:server:GetRewardCase')
@@ -95,7 +95,7 @@ AddEventHandler("qb-randombox:BagOpening", function()
 
         DeleteEntity(bag1)
 
-        TriggerServerEvent('QBCore:Server:RemoveItem', 'randombag', 1)
+        TriggerServerEvent("qb-randombox:removeItem", "randombag")
         TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items['randombag'], "remove")
 
         TriggerServerEvent('qb-randombox:server:GetRewardBag')
@@ -129,7 +129,7 @@ AddEventHandler("qb-randombox:AmmoOpening", function()
 
         DeleteEntity(ammo1)
 
-        TriggerServerEvent('QBCore:Server:RemoveItem', 'randomammo', 1)
+        TriggerServerEvent("qb-randombox:removeItem", "randomammo")
         TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items['randomammo'], "remove")
 
         TriggerServerEvent('qb-randombox:server:GetRewardAmmo')
@@ -163,7 +163,7 @@ AddEventHandler("qb-randombox:MedkitOpening", function()
 
         DeleteEntity(med1)
 
-        TriggerServerEvent('QBCore:Server:RemoveItem', 'randommedkit', 1)
+        TriggerServerEvent("qb-randombox:removeItem", "randommedkit")
         TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items['randommedkit'], "remove")
 
         TriggerServerEvent('qb-randombox:server:GetRewardMedkit')
@@ -197,10 +197,44 @@ AddEventHandler("qb-randombox:GunCaseOpening", function()
 
         DeleteEntity(gun1)
 
-        TriggerServerEvent('QBCore:Server:RemoveItem', 'randomgun', 1)
+        TriggerServerEvent("qb-randombox:removeItem", "randomgun")
         TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items['randomgun'], "remove")
 
         TriggerServerEvent('qb-randombox:server:GetRewardGunCase')
+    end)
+end)
+
+RegisterNetEvent("qb-randombox:GymBagOpening")
+AddEventHandler("qb-randombox:GymBagOpening", function()
+    local playerPed = PlayerPedId()
+    local coords    = GetEntityCoords(playerPed)
+    local forward   = GetEntityForwardVector(playerPed)
+    local x, y, z   = table.unpack(coords + forward * 1.0)
+
+    local gymbag = `hei_p_m_bag_var22_arm_s`
+    RequestModel(gymbag)
+    while (not HasModelLoaded(gymbag)) do
+        Wait(1)
+    end
+    local gym1 = CreateObject(gymbag, x, y, z, true, false, true)
+    PlaceObjectOnGroundProperly(gym1)
+    SetEntityAsMissionEntity(gym1)
+
+    TriggerEvent('animations:client:EmoteCommandStart', {"mechanic3"})
+    QBCore.Functions.Progressbar('name_here', 'Opening Gym Bag...', 5000, false, true, {
+        disableMovement = true,
+        disableCarMovement = true,
+        disableMouse = false,
+        disableCombat = true,
+    }, {}, {}, {}, function()
+        TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+
+        DeleteEntity(gym1)
+
+        TriggerServerEvent("qb-randombox:removeItem", "randomgym")
+        TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items['randomgym'], "remove")
+
+        TriggerServerEvent('qb-randombox:server:GetRewardGymBag')
     end)
 end)
 
@@ -226,6 +260,10 @@ end)
 
 RegisterNetEvent('qb-randombox:client:SetAmmoItems', function(GunItemList)
 	Config.GunItemList = GunItemList
+end)
+
+RegisterNetEvent('qb-randombox:client:SetGymItems', function(GymItemList)
+	Config.GymItemList = GymItemList
 end)
 
 function loadAnimDict(dict)
