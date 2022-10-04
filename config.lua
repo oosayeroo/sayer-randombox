@@ -1,12 +1,15 @@
 Config = {}
 ---Box and Case Can have completely different items within them. they do not inteferre with each other at all.
 
+Config.OpeningEmote = "mechanic3"  --uses dpemotes
+
 Config.NumberOfItemsBox = 2  --amount of different items to receive from 1 (box) 
 Config.NumberOfItemsCase = 2  --amount of different items to receive from 1 (Case) 
 Config.NumberOfItemsBag = 2
 Config.NumberOfItemsAmmo = 1
 Config.NumberOfItemsMedkit = 1
 Config.NumberOfItemsGun = 1
+Config.NumberOfItemsGym = 1
 
 Config.ItemAmountBox = 5  --quantity of each item received (1 coffee or 2 coffee etc) (Box)
 Config.ItemAmountCase = 5  --quantity of each item received (1 coffee or 2 coffee etc) (Case)
@@ -14,6 +17,7 @@ Config.ItemAmountBag = 5
 Config.ItemAmountAmmo = 1
 Config.ItemAmountMedkit = 1
 Config.ItemAmountGun = 1
+Config.ItemAmountGym = 1
 
 Config.LuckItemBox = "trojan_usb"  --change to whatever you want (Box)
 Config.LuckItemCase = "bandage"  --change to whatever you want (Case)
@@ -22,6 +26,17 @@ Config.LuckItemBag = "lockpick"
 Config.LuckAmountBox = 1 --amount of luck item you receive if enabled (Box)
 Config.LuckAmountCase = 1 --amount of luck item you receive if enabled (Case)
 Config.LuckAmountBag = 1
+
+---///DONATOR STUFF//---
+--Config.NumberOfItemsDonate1 = 2
+--Config.ItemAmountDonate1 = 5
+--Config.LuckItemDonate = "lockpick" --change to a rare item
+--Config.LuckAmountDonate = 1
+--Config.DonateItemList = {}
+--Config.DonateItems = {  --change these to whatever
+--    "coffee",
+--    "advancedlockpick",
+--}
 
 Config.BoxItemList = {}  --dont touch
 
@@ -106,4 +121,12 @@ Config.GunItems = {
     "pistol50_luxuryfinish",
     "smg_extendedclip",
     "pumpshotgun_luxuryfinish",
+}
+
+Config.GymItemList = {}
+
+Config.GymItems = {
+    "water_bottle",
+    "grapejuice",
+    "snikkel_candy",
 }
