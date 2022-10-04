@@ -1,5 +1,12 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
+RegisterServerEvent("qb-randombox:removeItem")
+AddEventHandler("qb-randombox:removeItem", function(item)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src) 
+    Player.Functions.RemoveItem(item, 1) 
+end) 
+
 RegisterNetEvent('qb-randombox:server:GetRewardBox', function()
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
@@ -90,6 +97,17 @@ RegisterNetEvent('qb-randombox:server:GetRewardAmmo', function()
                 end
             end)
 
+            RegisterNetEvent('qb-randombox:server:GetRewardGymBag', function()
+                local src = source
+                local Player = QBCore.Functions.GetPlayer(src)
+                    for i = 1, Config.NumberOfItemsGym, 1 do
+                        local item = Config.GymItems[math.random(1, #Config.GymItems)]
+                        Player.Functions.AddItem(item, Config.ItemAmountGym)
+                        TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[item], 'add')
+                        Wait(500)
+                    end
+                end)
+
 
 
 QBCore.Functions.CreateUseableItem("randombox", function(source, item)
@@ -120,4 +138,9 @@ end)
 QBCore.Functions.CreateUseableItem("randomgun", function(source, item)
     local Player = QBCore.Functions.GetPlayer(source)
     TriggerClientEvent("qb-randombox:GunCaseOpening", source, item.name)
+end)
+
+QBCore.Functions.CreateUseableItem("randomgym", function(source, item)
+    local Player = QBCore.Functions.GetPlayer(source)
+    TriggerClientEvent("qb-randombox:GymBagOpening", source, item.name)
 end)
