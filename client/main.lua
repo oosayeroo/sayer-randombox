@@ -1,37 +1,44 @@
 local QBCore = exports['qb-core']:GetCoreObject()
+local spawnprop = false
 
 RegisterNetEvent("qb-randombox:BoxOpening")
 AddEventHandler("qb-randombox:BoxOpening", function()
-    local playerPed = PlayerPedId()
-    local coords    = GetEntityCoords(playerPed)
-    local forward   = GetEntityForwardVector(playerPed)
-    local x, y, z   = table.unpack(coords + forward * 1.0)
+    if not spawnprop then
+        spawnprop = true
+        local playerPed = PlayerPedId()
+        local coords    = GetEntityCoords(playerPed)
+        local forward   = GetEntityForwardVector(playerPed)
+        local x, y, z   = table.unpack(coords + forward * 1.0)
 
-    local box = `hei_prop_heist_box`
-    RequestModel(box)
-    while (not HasModelLoaded(box)) do
-        Wait(1)
+        local box = `hei_prop_heist_box`
+        RequestModel(box)
+        while (not HasModelLoaded(box)) do
+            Wait(1)
+        end
+        local obj1 = CreateObject(box, x, y, z, true, false, true)
+        PlaceObjectOnGroundProperly(obj1)
+        SetEntityAsMissionEntity(obj1)
+
+        TriggerEvent('animations:client:EmoteCommandStart', {Config.OpeningEmote})
+        QBCore.Functions.Progressbar('name_here', 'Opening Box...', 5000, false, true, {
+            disableMovement = true,
+            disableCarMovement = true,
+            disableMouse = false,
+            disableCombat = true,
+        }, {}, {}, {}, function()
+            TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+
+            DeleteEntity(obj1)
+
+            TriggerServerEvent("qb-randombox:removeItem", "randombox")
+            TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items['randombox'], "remove")
+
+            TriggerServerEvent('qb-randombox:server:GetRewardBox')
+            spawnprop = false
+        end)
+    else
+        QBCore.Functions.Notify('You Are Already Doing Something', 'error')
     end
-    local obj1 = CreateObject(box, x, y, z, true, false, true)
-    PlaceObjectOnGroundProperly(obj1)
-    SetEntityAsMissionEntity(obj1)
-
-    TriggerEvent('animations:client:EmoteCommandStart', {"mechanic3"})
-    QBCore.Functions.Progressbar('name_here', 'Opening Box...', 5000, false, true, {
-        disableMovement = true,
-        disableCarMovement = true,
-        disableMouse = false,
-        disableCombat = true,
-    }, {}, {}, {}, function()
-        TriggerEvent('animations:client:EmoteCommandStart', {"c"})
-
-        DeleteEntity(obj1)
-
-        TriggerServerEvent("qb-randombox:removeItem", "randombox")
-        TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items['randombox'], "remove")
-
-        TriggerServerEvent('qb-randombox:server:GetRewardBox')
-    end)
 end)
 
 RegisterNetEvent("qb-randombox:CaseOpening")
@@ -50,7 +57,7 @@ AddEventHandler("qb-randombox:CaseOpening", function()
     PlaceObjectOnGroundProperly(obj2)
     SetEntityAsMissionEntity(obj2)
 
-    TriggerEvent('animations:client:EmoteCommandStart', {"mechanic3"})
+    TriggerEvent('animations:client:EmoteCommandStart', {Config.OpeningEmote})
     QBCore.Functions.Progressbar('name_here', 'Opening Case...', 5000, false, true, {
         disableMovement = true,
         disableCarMovement = true,
@@ -84,7 +91,7 @@ AddEventHandler("qb-randombox:BagOpening", function()
     PlaceObjectOnGroundProperly(bag1)
     SetEntityAsMissionEntity(bag1)
 
-    TriggerEvent('animations:client:EmoteCommandStart', {"mechanic3"})
+    TriggerEvent('animations:client:EmoteCommandStart', {Config.OpeningEmote})
     QBCore.Functions.Progressbar('name_here', 'Opening Bag...', 5000, false, true, {
         disableMovement = true,
         disableCarMovement = true,
@@ -118,7 +125,7 @@ AddEventHandler("qb-randombox:AmmoOpening", function()
     PlaceObjectOnGroundProperly(ammo1)
     SetEntityAsMissionEntity(ammo1)
 
-    TriggerEvent('animations:client:EmoteCommandStart', {"mechanic3"})
+    TriggerEvent('animations:client:EmoteCommandStart', {Config.OpeningEmote})
     QBCore.Functions.Progressbar('name_here', 'Opening Ammo Case...', 5000, false, true, {
         disableMovement = true,
         disableCarMovement = true,
@@ -152,7 +159,7 @@ AddEventHandler("qb-randombox:MedkitOpening", function()
     PlaceObjectOnGroundProperly(med1)
     SetEntityAsMissionEntity(med1)
 
-    TriggerEvent('animations:client:EmoteCommandStart', {"mechanic3"})
+    TriggerEvent('animations:client:EmoteCommandStart', {Config.OpeningEmote})
     QBCore.Functions.Progressbar('name_here', 'Opening Medical Kit...', 5000, false, true, {
         disableMovement = true,
         disableCarMovement = true,
@@ -186,7 +193,7 @@ AddEventHandler("qb-randombox:GunCaseOpening", function()
     PlaceObjectOnGroundProperly(gun1)
     SetEntityAsMissionEntity(gun1)
 
-    TriggerEvent('animations:client:EmoteCommandStart', {"mechanic3"})
+    TriggerEvent('animations:client:EmoteCommandStart', {Config.OpeningEmote})
     QBCore.Functions.Progressbar('name_here', 'Opening Gun Case...', 5000, false, true, {
         disableMovement = true,
         disableCarMovement = true,
@@ -220,7 +227,7 @@ AddEventHandler("qb-randombox:GymBagOpening", function()
     PlaceObjectOnGroundProperly(gym1)
     SetEntityAsMissionEntity(gym1)
 
-    TriggerEvent('animations:client:EmoteCommandStart', {"mechanic3"})
+    TriggerEvent('animations:client:EmoteCommandStart', {Config.OpeningEmote})
     QBCore.Functions.Progressbar('name_here', 'Opening Gym Bag...', 5000, false, true, {
         disableMovement = true,
         disableCarMovement = true,
