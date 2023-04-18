@@ -2,8 +2,8 @@ fx_version 'cerulean'
 game 'gta5'
 
 author 'oosayeroo' 
-description 'qb-randombox by oosayeroo'
-version '1.0.0'
+description 'sayer-randombox by oosayeroo'
+version '1.1.0'
 
 shared_scripts {
     'config.lua'
