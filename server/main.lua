@@ -52,7 +52,7 @@ RegisterNetEvent('sayer-randombox:server:GetReward', function(value)
                 TriggerClientEvent('QBCore:Notify', src, "You Received a Rare Item", 'success')
             end
         end
-    elseif Config.Framework == 'esx'
+    elseif Config.Framework == 'esx' then
         Player = GetPlayerFromId(src)
         for i = 1, value.NumberOfItems, 1 do
             local item = value.Items[math.random(1, #value.Items)]
