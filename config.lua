@@ -1,5 +1,6 @@
 Config = {}
 ---Box and Case Can have completely different items within them. they do not inteferre with each other at all.
+Config.Framework = 'qb'
 
 Config.Useables = {
     ['randombox'] = { --item code
