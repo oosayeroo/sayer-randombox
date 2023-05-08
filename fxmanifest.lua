@@ -3,7 +3,7 @@ game 'gta5'
 
 author 'oosayeroo' 
 description 'sayer-randombox by oosayeroo'
-version '1.1.0'
+version '1.2.0'
 
 shared_scripts {
     'config.lua'
