@@ -1,4 +1,9 @@
-local QBCore = exports['qb-core']:GetCoreObject()
+local FRMK = nil
+if Config.Framework == 'qb' then
+    FRMK = exports['qb-core']:GetCoreObject()
+elseif Config.Framework == 'esx' then
+    FRMK = exports["es_extended"]:getSharedObject()
+end
 local spawnprop = false
 
 RegisterNetEvent("sayer-randombox:OpenBox",function(key,value)
@@ -18,24 +23,42 @@ RegisterNetEvent("sayer-randombox:OpenBox",function(key,value)
         PlaceObjectOnGroundProperly(obj1)
         SetEntityAsMissionEntity(obj1)
 
-        TriggerEvent('animations:client:EmoteCommandStart', {value.OpeningEmote})
-        QBCore.Functions.Progressbar('name_here', 'Opening...', value.OpeningTime*1000, false, true, {
-            disableMovement = true,
-            disableCarMovement = true,
-            disableMouse = false,
-            disableCombat = true,
-        }, {}, {}, {}, function()
-            TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+        if Config.Framework == 'qb' then
+            TriggerEvent('animations:client:EmoteCommandStart', {value.OpeningEmote})
+            FRMK.Functions.Progressbar('name_here', 'Opening...', value.OpeningTime*1000, false, true, {
+                disableMovement = true,
+                disableCarMovement = true,
+                disableMouse = false,
+                disableCombat = true,
+            }, {}, {}, {}, function()
+                TriggerEvent('animations:client:EmoteCommandStart', {"c"})
 
-            DeleteEntity(obj1)
+                DeleteEntity(obj1)
 
-            TriggerServerEvent("sayer-randombox:removeItem", key)
-            TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items[key], "remove")
-            TriggerServerEvent('sayer-randombox:server:GetReward', value)
-            spawnprop = false
-        end)
+                TriggerServerEvent("sayer-randombox:removeItem", key)
+                TriggerServerEvent('sayer-randombox:server:GetReward', value)
+                spawnprop = false
+            end)
+        elseif Config.Framework == 'esx' then
+            TriggerEvent('animations:client:EmoteCommandStart', {value.OpeningEmote})
+            exports["esx_progressbar"]:Progressbar("Opening...", value.OpeningTime*1000,{
+                FreezePlayer = true, 
+                animation ={},
+                onFinish = function()
+                TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+                DeleteEntity(obj1)
+
+                TriggerServerEvent("sayer-randombox:removeItem", key)
+                TriggerServerEvent('sayer-randombox:server:GetReward', value)
+                spawnprop = false
+            end})
+        end
     else
-        QBCore.Functions.Notify('You Are Already Doing Something', 'error')
+        if Config.Framework == 'qb' then
+            FRMK.Functions.Notify('You Are Already Doing Something', 'error')
+        elseif Config.Framework == 'esx' then
+            FRMK.ShowNotification("You Are Already Doing Something", "error")
+        end
     end
 end)
 
