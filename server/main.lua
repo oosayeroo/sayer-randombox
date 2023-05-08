@@ -38,14 +38,14 @@ RegisterNetEvent('sayer-randombox:server:GetReward', function(value)
     if Config.Framework == 'qb' then
         Player = FRMK.Functions.GetPlayer(src) 
         for i = 1, value.NumberOfItems, 1 do
-            local item = value.Items[math.random(1, #value.Items)]
-            Player.Functions.AddItem(item, value.ItemAmount)
-            TriggerClientEvent('inventory:client:ItemBox', src, FRMK.Shared.Items[item], 'add')
+            local pick = value.Items[math.random(1, #value.Items)]
+            Player.Functions.AddItem(pick.item, value.ItemAmount)
+            TriggerClientEvent('inventory:client:ItemBox', src, FRMK.Shared.Items[pick.item], 'add')
             Wait(500)
         end
         if value.HasRare then
             if value.RareItemChance > math.random(1,100) then
-                local rareitem = value.RareItem
+                local rareitem = value.RareItem.item
                 local rareamount = value.RareItemAmount
                 Player.Functions.AddItem(rareitem, rareamount)
                 TriggerClientEvent('inventory:client:ItemBox', src, FRMK.Shared.Items[rareitem], 'add')
@@ -55,15 +55,23 @@ RegisterNetEvent('sayer-randombox:server:GetReward', function(value)
     elseif Config.Framework == 'esx' then
         Player = GetPlayerFromId(src)
         for i = 1, value.NumberOfItems, 1 do
-            local item = value.Items[math.random(1, #value.Items)]
-            Player.addInventoryItem(item, value.ItemAmount)
-            Wait(500)
+            local pick = value.Items[math.random(1, #value.Items)]
+            if pick.isWeapon then
+                Player.addWeapon(pick.item, value.ItemAmount)
+            else
+                Player.addInventoryItem(item, value.ItemAmount)
+                Wait(500)
+            end
         end
         if value.HasRare then
             if value.RareItemChance > math.random(1,100) then
-                local rareitem = value.RareItem
+                local rareitem = value.RareItem.item
                 local rareamount = value.RareItemAmount
-                Player.addInventoryItem(rareitem, rareamount)
+                if rareitem.isWeapon then
+                    Player.addWeapon(rareitem, rareamount)
+                else
+                    Player.addInventoryItem(rareitem, rareamount)
+                end
                 Player.showNotification("You Received a Rare Item")
             end
         end
