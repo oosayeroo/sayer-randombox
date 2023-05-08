@@ -1,6 +1,6 @@
 Config = {}
 ---Box and Case Can have completely different items within them. they do not inteferre with each other at all.
-Config.Framework = 'qb'
+Config.Framework = 'qb' --'qb'/'esx'
 
 Config.Useables = {
     ['randombox'] = { --item code
@@ -10,27 +10,16 @@ Config.Useables = {
         NumberOfItems = 2, --amount of different items to receive
         ItemAmount = 1, --amount of specific items to get
         Items = {
-            "coffee",
-            "twerks_candy",
-            "lockpick",
-            "advancedlockpick",
-            "weapon_dagger",
-            "weapon_flashlight",
-            "weapon_briefcase",
-            "weapon_briefcase_02",
-            "weapon_pistol_mk2",
-            "pistol_ammo",
-            "security_card_01",
-            "beer",
-            "whiskey",
-            "joint",
-            "metalscrap",
-            "repairkit",
+            {item = "coffee", isWeapon = false},
+            {item = "twerks_candy", isWeapon = false},
+            {item = "lockpick", isWeapon = false},
+            {item = "advancedlockpick", isWeapon = false},
+            {item = "weapon_dagger", isWeapon = true},
         },
         HasRare = true,
         RareItemChance = 5, --in % out of 100
         RareItemAmount = 1, 
-        RareItem = "trojan_usb",
+        RareItem = {item = "trojan_usb", isWeapon = false},
     },
     ['randomcase'] = {
         Model = `bkr_prop_biker_case_shut`,
@@ -39,20 +28,18 @@ Config.Useables = {
         NumberOfItems = 2, --amount of different items to receive
         ItemAmount = 1, --amount of specific items to get
         Items = {
-            "casinochips",
-            "lighter",
-            "empty_evidence_bag",
-            "handcuffs",
-            "rolex",
-            "goldchain",
-            "plastic",
-            "weed_white-widow",
-            "joint",
+            {item = "casinochips", isWeapon = false},
+            {item = "lighter", isWeapon = false},
+            {item = "empty_evidence_bag", isWeapon = false},
+            {item = "handcuffs", isWeapon = false},
+            {item = "rolex", isWeapon = false},
+            {item = "goldchain", isWeapon = false},
+            {item = "plastic", isWeapon = false},
         },
         HasRare = true,
         RareItemChance = 5, --in % out of 100
         RareItemAmount = 1, 
-        RareItem = "bandage",
+        RareItem = {item = "bandage", isWeapon = false},
     },
     ['randombag'] = {
         Model = `hei_prop_heist_binbag`,
@@ -61,20 +48,17 @@ Config.Useables = {
         NumberOfItems = 2, --amount of different items to receive
         ItemAmount = 1, --amount of specific items to get
         Items = {
-            "pistol_ammo",
-            "rifle_ammo",
-            "smg_ammo",
-            "shotgun_ammo",
-            "security_card_01",
-            "water_bottle",
-            "cokebaggy",
-            "weed_white-widow",
-            "joint",
+            {item = "pistol_ammo", isWeapon = false},
+            {item = "rifle_ammo", isWeapon = false},
+            {item = "smg_ammo", isWeapon = false},
+            {item = "shotgun_ammo", isWeapon = false},
+            {item = "security_card_01", isWeapon = false},
+            {item = "water_bottle", isWeapon = false},
         },
         HasRare = true,
         RareItemChance = 5, --in % out of 100
         RareItemAmount = 1, 
-        RareItem = "lockpick",
+        RareItem = {item = "lockpick", isWeapon = false},
     },
     ['randomammo'] = {
         Model = `prop_box_ammo01a`,
@@ -83,11 +67,11 @@ Config.Useables = {
         NumberOfItems = 2, --amount of different items to receive
         ItemAmount = 1, --amount of specific items to get
         Items = {
-            "pistol_ammo",
-            "rifle_ammo",
-            "smg_ammo",
-            "shotgun_ammo",
-            "mg_ammo",
+            {item = "pistol_ammo", isWeapon = false},
+            {item = "rifle_ammo", isWeapon = false},
+            {item = "smg_ammo", isWeapon = false},
+            {item = "shotgun_ammo", isWeapon = false},
+            {item = "mg_ammo", isWeapon = false},
         },
         HasRare = false,
     },
@@ -98,10 +82,10 @@ Config.Useables = {
         NumberOfItems = 2, --amount of different items to receive
         ItemAmount = 1, --amount of specific items to get
         Items = {
-            "firstaid",
-            "bandage",
-            "ifaks",
-            "painkillers",
+            {item = "firstaid", isWeapon = false},
+            {item = "bandage", isWeapon = false},
+            {item = "ifaks", isWeapon = false},
+            {item = "painkillers", isWeapon = false},
         },
         HasRare = false,
     },
@@ -112,18 +96,13 @@ Config.Useables = {
         NumberOfItems = 2, --amount of different items to receive
         ItemAmount = 1, --amount of specific items to get
         Items = {
-            "weapon_pistol",
-            "weapon_pistol50",
-            "weapon_pistol_mk2",
-            "weapon_smg",
-            "weapon_pumpshotgun",
-            "weapon_molotov",
-            "pistol_extendedclip",
-            "pistol_flashlight",
-            "pistol50_extendedclip",
-            "pistol50_luxuryfinish",
-            "smg_extendedclip",
-            "pumpshotgun_luxuryfinish",
+            {item = "weapon_pistol", isWeapon = true},
+            {item = "weapon_pistol50", isWeapon = true},
+            {item = "weapon_pistol_mk2", isWeapon = true},
+            {item = "weapon_smg", isWeapon = true},
+            {item = "weapon_pumpshotgun", isWeapon = true},
+            {item = "weapon_molotov", isWeapon = true},
+            {item = "pistol_extendedclip", isWeapon = true},
         },
         HasRare = false,
     },
@@ -134,9 +113,9 @@ Config.Useables = {
         NumberOfItems = 2, --amount of different items to receive
         ItemAmount = 1, --amount of specific items to get
         Items = {
-            "water_bottle",
-            "grapejuice",
-            "snikkel_candy",
+            {item = "water_bottle", isWeapon = false},
+            {item = "grapejuice", isWeapon = false},
+            {item = "snikkel_candy", isWeapon = false},
         },
         HasRare = false,
     },
