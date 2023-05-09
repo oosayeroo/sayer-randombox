@@ -1,7 +1,7 @@
 
 Discord - https://discord.gg/3WYz3zaqG5
 
-# A Random Box for QBCore Framework
+# A Random Box for QBCore/ESX
 
 -- Does exactly what it says on the tin(title), adds a box that when opened gives a random item or items based on what you configure it to. these boxes can be placed anywhere. 
 
@@ -14,10 +14,7 @@ Discord - https://discord.gg/3WYz3zaqG5
 
 ## Dependencies :
 
-QBCore Framework - https://github.com/qbcore-framework/qb-core
-
-qb-input - https://github.com/qbcore-framework/qb-input
-
+QBCore or ESX
 
 ## Credits : 
 
